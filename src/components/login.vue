@@ -8,13 +8,13 @@
       <form>
           <label>
               User Name: 
-              <input type="text" ref="user_input" />              
+              <input type="text" v-model="input.username" ref="user_input" />              
           </label>
           <br/>
           <br/>
           <label>
               Password:
-              <input type="password" ref="user_password" />
+              <input type="password" v-model="input.user_pass" ref="user_password" />
           </label>
           <br/>
           <button @click.prevent="login()"> Login </button>
@@ -32,20 +32,24 @@ export default {
   name: 'login',  
   data() {
     return {     
-      link: '/comp-one'
+      link: '/comp-one', 
+      input: {
+        username: '',
+        user_pass: ''
+      }
     }
   } ,
   methods: {
-      login() {
-          var userName = this.$refs.user_input.value;
-          var password = this.$refs.user_password.value;
+      login() {          
+          let userName = this.input.username;
+          let password = this.input.user_pass;
           console.log(`user name ${userName}`);
           console.log(`user password ${password}`);
-
+          let self = this;
           Axios.post('http://localhost:8008/auth/login', {
               username: `${userName}`,
               password: `${password}`
-          }).then (response => console.log(response));
+          }).then (response => self.$router.push('/comp-one'));
       }
   }
   

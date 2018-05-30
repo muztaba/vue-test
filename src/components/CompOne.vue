@@ -20,7 +20,8 @@ export default {
   data: function() {
     return {
       inputText: '',
-      massge: 'Will be replaced by API call'
+      massge: 'Will be replaced by API call',
+      YES: ''
     }
   },
   mounted() {

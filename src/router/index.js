@@ -21,7 +21,8 @@ export default new Router(
                 name: 'comp-one',
                 component: CompOne,
                 beforeEnter: (to, from, next) => {                    
-                    next({'path': '/'});
+                    console.log("Redirecting");
+                    next();
                 }
             }
         ]
